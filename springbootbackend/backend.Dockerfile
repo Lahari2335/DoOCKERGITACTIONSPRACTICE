@@ -3,12 +3,13 @@ FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /app
 
-COPY mvnw .          
+COPY mvnw .
 COPY .mvn/ .mvn
 COPY pom.xml ./
 
 COPY src ./src
 
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Run the app
